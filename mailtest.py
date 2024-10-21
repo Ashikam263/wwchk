@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.edge.service import Service
+# from webdriver_manager.microsoft import EdgeDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 import time
 import smtplib
@@ -9,17 +10,18 @@ from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 
 # Email credentials
-sender_email = "your-email@example.com"
-receiver_email = "your-email@example.com"
-email_password = "your-password"
+sender_email = "mail"
+receiver_email = ""
+email_password = ""
 
 # WhatsApp contact to monitor
-contact_name = "Person Name"
+contact_name = "Umma"
 
 # Set up Selenium for Edge browser
 options = webdriver.EdgeOptions()
-options.add_argument("--user-data-dir=C:/Users/Your-User-Name/AppData/Local/Microsoft/Edge/User Data")
-driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()), options=options)
+# options.add_argument("--user-data-dir=C:/Users/Your-User-Name/AppData/Local/Microsoft/Edge/User Data")
+service = Service(EdgeChromiumDriverManager().install())
+driver = webdriver.Edge(service=service, options=options)  # Pass options here
 
 # Send email function
 def send_email(status, timestamp):
